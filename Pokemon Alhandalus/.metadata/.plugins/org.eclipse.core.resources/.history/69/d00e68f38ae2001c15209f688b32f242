@@ -1,0 +1,7 @@
+package enums;
+
+public enum Genero {
+HOMBRE  ("./imagenes/hombre.jpg"),
+MUJER, 
+NO_BINARIO 
+}
