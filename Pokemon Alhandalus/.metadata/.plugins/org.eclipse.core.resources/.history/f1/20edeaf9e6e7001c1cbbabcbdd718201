@@ -1,0 +1,9 @@
+package interfacesGraficas;
+
+public class PantallaInicio {
+
+	public PantallaInicio(){
+		
+	}
+	
+}

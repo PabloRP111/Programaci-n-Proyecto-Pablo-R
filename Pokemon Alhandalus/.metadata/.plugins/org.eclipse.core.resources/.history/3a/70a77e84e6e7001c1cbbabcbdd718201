@@ -1,0 +1,8 @@
+package interfacesGraficas;
+
+public class Ventana {
+
+	Ventana ventana=new Ventana();
+
+	
+}

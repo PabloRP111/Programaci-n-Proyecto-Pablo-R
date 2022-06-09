@@ -1,0 +1,16 @@
+package interfacesGraficas;
+
+import javax.swing.ImageIcon;
+
+public class Ventana {
+
+	this.setContentPane(new PantallaRegistro(this));
+	this.setVisible(true);
+	this.setSize(500,300);
+	this.setLocationRelativeTo(null);
+	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	this.setTitle("Pokemon");
+	this.setIconImage(new ImageIcon("./imagenes/logo.png").getImage());
+
+	
+}
