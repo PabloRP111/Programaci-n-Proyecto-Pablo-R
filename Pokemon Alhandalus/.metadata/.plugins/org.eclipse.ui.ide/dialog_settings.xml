@@ -6,6 +6,9 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\asrau\Desktop\Examen Interfaces PabloR"/>
+			<item value="C:\Users\asrau\Desktop\pruebas.bd.interfaces.daw como lo teniamos el 8 de Abril"/>
+			<item value="C:\Users\asrau\Desktop\Repaso Examén Programación"/>
 			<item value="C:\Users\asrau\Desktop\Apuntes Interfaces\PruebaInterfaz"/>
 		</list>
 	</section>

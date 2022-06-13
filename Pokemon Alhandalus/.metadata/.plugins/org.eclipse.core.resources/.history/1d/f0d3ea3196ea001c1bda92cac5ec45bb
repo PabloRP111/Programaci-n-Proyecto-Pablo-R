@@ -1,0 +1,14 @@
+package excepciones;
+
+/**
+ * Excepción que verifica quel nombre no este en blanco
+ * @author asrau
+ *
+ */
+public class nombreVacio extends Exception {
+
+	public nombreVacio(String msg) {
+		super(msg);
+	}
+	
+}

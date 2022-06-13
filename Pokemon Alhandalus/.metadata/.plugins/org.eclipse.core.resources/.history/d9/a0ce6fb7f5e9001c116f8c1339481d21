@@ -1,0 +1,42 @@
+package interfacesGraficas;
+
+import java.util.HashMap;
+import java.util.Iterator;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Ventana extends JFrame{
+
+	private HashMap <String,JPanel>pantallas;
+	
+	
+	public Ventana() {
+	this.pantallas=new HashMap<String,JPanel>();
+	this.pantallas.put("PantallaInicio", new PantallaInicio(this));
+	this.pantallas.put("PantallaPersonaje", new PantallaPersonaje(this));	
+	this.pantallas.put("PantallaIniciales", new PantallaIniciales(this));
+	
+	this.setContentPane(this.pantallas.get("PantallaInicio"));
+	this.setVisible(true);
+	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	this.setTitle("Pokemon");
+	this.setIconImage(new ImageIcon("./imagenes/logo.png").getImage());
+	this.setSize(810,680);
+	this.setLocationRelativeTo(null);
+	
+	}
+	
+	public void cambiarPantalla(String nombrePantalla) {
+		Iterator it =this.pantallas.values().iterator();
+		while(it.hasNext()) {
+			JPanel actual=(JPanel)it.next();
+			actual.setVisible(false);
+		}
+		this.pantallas.get(nombrePantalla).setVisible(true);
+		this.setContentPane(this.pantallas.get(nombrePantalla));
+		
+	}
+	
+}

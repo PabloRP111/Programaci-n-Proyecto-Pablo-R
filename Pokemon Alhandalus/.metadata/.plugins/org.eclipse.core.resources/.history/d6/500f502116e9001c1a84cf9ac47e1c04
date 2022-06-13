@@ -1,0 +1,16 @@
+package clases;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class LiderGymnasio extends Entrenador {
+
+	private String medalla;
+	
+	public LiderGymnasio(int id, String nombre, short monedero, String aspecto) throws SQLException {
+		super(id, nombre, monedero, aspecto);
+
+	}
+
+	
+}

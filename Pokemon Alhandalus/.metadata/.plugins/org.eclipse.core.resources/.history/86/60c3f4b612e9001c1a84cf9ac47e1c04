@@ -1,0 +1,16 @@
+package clases;
+
+import java.sql.SQLException;
+
+public class ObjetoCuración extends Objeto {
+
+	private byte vidaCurada;
+
+	public ObjetoCuración(int id, String nombre, String tipoObjeto, byte vidaCurada) throws SQLException {
+		super(id, nombre, tipoObjeto);
+	
+	}
+
+  
+  
+}

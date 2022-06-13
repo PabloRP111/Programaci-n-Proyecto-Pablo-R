@@ -1,0 +1,31 @@
+package clases;
+
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import conexionBD.ConexionBD;
+
+public class ObjetoCuración extends Objeto {
+
+	private byte vidaCurada;
+
+	public ObjetoCuración(int id, String nombre, String tipoObjeto, byte vidaCurada, byte vidaCurada1) throws SQLException {
+		super(id, nombre, tipoObjeto);
+	
+		Statement query=ConexionBD.conectar();
+		if (query.executeUpdate("insert into objetoCuracion values(" + id + "','" + nombre + "','" + tipoObjeto  +")") > 0) {
+
+			this.vidaCurada=vidaCurada1;	
+		}
+		else {
+			ConexionBD.desconectar();
+			throw new SQLException("No se ha podido insertar");
+		}
+		ConexionBD.desconectar();
+	
+		
+	}
+
+  
+  
+}

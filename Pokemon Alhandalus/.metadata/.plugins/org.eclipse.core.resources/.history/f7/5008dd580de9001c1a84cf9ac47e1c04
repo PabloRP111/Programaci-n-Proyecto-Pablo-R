@@ -1,0 +1,10 @@
+package clases;
+
+public class Pokebol extends Objeto {
+
+	public Pokebol(int id, String nombre, String tipoObjeto) {
+		super(id, nombre, tipoObjeto);
+		
+	}
+	
+}

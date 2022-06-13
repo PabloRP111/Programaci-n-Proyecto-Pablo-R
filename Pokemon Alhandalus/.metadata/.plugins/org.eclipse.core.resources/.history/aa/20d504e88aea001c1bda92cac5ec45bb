@@ -1,0 +1,228 @@
+package interfacesGraficas;
+
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JPanel;
+
+import conexionBD.ConexionBD;
+import excepciones.casillaDesmarcada;
+import excepciones.nombreVacio;
+import musica.MusicaFondo;
+
+import java.awt.GridBagLayout;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.GridBagConstraints;
+import javax.swing.ImageIcon;
+import java.awt.Insets;
+import javax.swing.JTextPane;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import javax.swing.SwingConstants;
+
+import clases.Jugador;
+import javax.swing.JTextField;
+import java.awt.Font;
+
+public class PantallaPokemon extends JPanel{
+
+	private Ventana ventana;
+	protected static String razaPokemon;
+	private JTextField txtRaza;
+	private JTextField txtDimeElNombre;
+	private JTextField textField_1;
+	private JTextField txtTipo;
+	private JTextField tipoPokemon;
+
+	
+
+
+	public PantallaPokemon(Ventana v,String razaPokemon) {
+		setBackground(new Color(152, 251, 152));
+		
+		
+		
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, -19, 0, 0, 0, 0, 0, 454, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
+		
+		JLabel fotoPokemon = new JLabel("");
+		fotoPokemon.setBackground(new Color(0, 0, 128));
+		
+		if(razaPokemon=="Bulbasur") {
+		fotoPokemon.setIcon(new ImageIcon(PantallaPokemon.class.getResource("/imgs/inicial3.png")));
+		};
+		
+		if(razaPokemon=="Metapod") {
+		fotoPokemon.setIcon(new ImageIcon(PantallaPokemon.class.getResource("/imgs/inicial2.png")));
+			};
+
+		if(razaPokemon=="Magikcarp") {
+		fotoPokemon.setIcon(new ImageIcon(PantallaPokemon.class.getResource("/imgs/inicial1.png")));
+		};
+		
+		txtTipo = new JTextField();
+		txtTipo.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTipo.setForeground(new Color(255, 255, 0));
+		txtTipo.setBackground(new Color(64, 224, 208));
+		txtTipo.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		txtTipo.setText("TIPO:");
+		GridBagConstraints gbc_txtTipo = new GridBagConstraints();
+		gbc_txtTipo.gridwidth = 3;
+		gbc_txtTipo.insets = new Insets(0, 0, 5, 5);
+		gbc_txtTipo.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtTipo.gridx = 1;
+		gbc_txtTipo.gridy = 1;
+		add(txtTipo, gbc_txtTipo);
+		txtTipo.setColumns(10);
+		
+		tipoPokemon = new JTextField();
+		GridBagConstraints gbc_tipoPokemon = new GridBagConstraints();
+		gbc_tipoPokemon.gridwidth = 3;
+		gbc_tipoPokemon.insets = new Insets(0, 0, 5, 5);
+		gbc_tipoPokemon.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tipoPokemon.gridx = 4;
+		gbc_tipoPokemon.gridy = 1;
+		add(tipoPokemon, gbc_tipoPokemon);
+		tipoPokemon.setColumns(10);
+		
+			
+		GridBagConstraints gbc_fotoPokemon = new GridBagConstraints();
+		gbc_fotoPokemon.gridheight = 3;
+		gbc_fotoPokemon.insets = new Insets(0, 0, 5, 5);
+		gbc_fotoPokemon.gridx = 7;
+		gbc_fotoPokemon.gridy = 1;
+		add(fotoPokemon, gbc_fotoPokemon);
+		
+		JButton Combatir = new BotonPrincipal("COMBATIR");
+		Combatir.setHorizontalAlignment(SwingConstants.LEFT);
+		Combatir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MusicaFondo musica= new MusicaFondo(new File("./sonidos/LiderGymnasio.wav"));
+		        musica.start();
+			}
+		});
+		
+		txtDimeElNombre = new JTextField();
+		txtDimeElNombre.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		txtDimeElNombre.setText("NOMBRE:");
+		txtDimeElNombre.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtDimeElNombre.setForeground(new Color(255, 255, 0));
+		txtDimeElNombre.setBackground(new Color(64, 224, 208));
+		GridBagConstraints gbc_txtDimeElNombre = new GridBagConstraints();
+		gbc_txtDimeElNombre.gridwidth = 3;
+		gbc_txtDimeElNombre.insets = new Insets(0, 0, 5, 5);
+		gbc_txtDimeElNombre.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtDimeElNombre.gridx = 1;
+		gbc_txtDimeElNombre.gridy = 2;
+		add(txtDimeElNombre, gbc_txtDimeElNombre);
+		txtDimeElNombre.setColumns(10);
+		
+		JLabel dimeNombre = new JLabel("");
+		dimeNombre.setBackground(new Color(0, 255, 255));
+		GridBagConstraints gbc_dimeNombre = new GridBagConstraints();
+		gbc_dimeNombre.gridwidth = 3;
+		gbc_dimeNombre.insets = new Insets(0, 0, 5, 5);
+		gbc_dimeNombre.gridx = 4;
+		gbc_dimeNombre.gridy = 2;
+		add(dimeNombre, gbc_dimeNombre);
+		
+		txtRaza = new JTextField();
+		txtRaza.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		txtRaza.setForeground(new Color(255, 255, 0));
+		txtRaza.setBackground(new Color(64, 224, 208));
+		txtRaza.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtRaza.setText("RAZA:");
+		GridBagConstraints gbc_txtRaza = new GridBagConstraints();
+		gbc_txtRaza.gridwidth = 4;
+		gbc_txtRaza.insets = new Insets(0, 0, 5, 5);
+		gbc_txtRaza.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtRaza.gridx = 0;
+		gbc_txtRaza.gridy = 3;
+		add(txtRaza, gbc_txtRaza);
+		txtRaza.setColumns(10);
+		
+		textField_1 = new JTextField();
+		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.gridwidth = 3;
+		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_1.gridx = 4;
+		gbc_textField_1.gridy = 3;
+		add(textField_1, gbc_textField_1);
+		textField_1.setColumns(10);
+		GridBagConstraints gbc_Combatir = new GridBagConstraints();
+		gbc_Combatir.insets = new Insets(0, 0, 5, 5);
+		gbc_Combatir.gridx = 8;
+		gbc_Combatir.gridy = 3;
+		add(Combatir, gbc_Combatir);
+		
+		JTextPane txtpnHabilidades = new JTextPane();
+		txtpnHabilidades.setText("- Habilidades:");
+		GridBagConstraints gbc_txtpnHabilidades = new GridBagConstraints();
+		gbc_txtpnHabilidades.insets = new Insets(0, 0, 5, 5);
+		gbc_txtpnHabilidades.fill = GridBagConstraints.BOTH;
+		gbc_txtpnHabilidades.gridx = 7;
+		gbc_txtpnHabilidades.gridy = 4;
+		add(txtpnHabilidades, gbc_txtpnHabilidades);
+		
+		ventana=v;
+		
+	}
+
+
+	public String getRazaPokemon() {
+		return razaPokemon;
+	}
+
+
+	public void setRazaPokemon(String razaPokemon) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Pokemon set razaPokemon="+razaPokemon+" where tipo="+this.razaPokemon+"")>0) {
+			this.razaPokemon=razaPokemon;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar la razaPokemon o ya estaba asiganado ");
+		
+	}
+	
+}
+	/*
+	public void crearHabilidades(String razaPokemon) {
+		try {
+
+		
+			new Habilidad(nombre, ptsAtaque, tipoHabilidad, usos);
+			
+		} catch (SQLException   e1) {
+			
+			System.err.println("Fallo inserts");
+
+		}
+	}
+
+	public void crearPokemon(String razaPokemon) {
+		try {
+
+		
+			new Pokemon(id,nombre, monedero, aspecto, genero);
+			
+		} catch (SQLException   e1) {
+			
+			System.err.println("Fallo inserts");
+
+		}
+	}
+	*/
+	
+}

@@ -1,0 +1,9 @@
+package clases;
+/**
+ * Clase madre, no la uso pana, se me olvido usarla
+ * @author PabloR
+ *
+ */
+public class ElementoConNombre {
+	
+}

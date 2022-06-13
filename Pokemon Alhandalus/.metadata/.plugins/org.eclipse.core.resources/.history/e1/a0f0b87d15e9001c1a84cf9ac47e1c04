@@ -1,0 +1,126 @@
+package clases;
+
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import conexionBD.ConexionBD;
+
+public class Entrenador extends ElementoConNombre {
+
+	private ArrayList<Pokemon> equipoPokemon=new ArrayList<Pokemon>();
+	private ArrayList<Objeto> inventario=new ArrayList<Objeto>();
+	private short monedero;
+	private String nombre; 
+	private int id;
+	private String aspecto;
+	
+	public Entrenador(int id,String nombre, short monedero,  String aspecto ) throws SQLException {
+		Statement query=ConexionBD.conectar();
+		if (query.executeUpdate("insert into Entrenador values(" + id + "','" + nombre + "','" + monedero + "','" + aspecto +")") > 0) {
+
+			this.id=id;
+			this.nombre=nombre;
+			this.aspecto=aspecto;
+			this.monedero=monedero;
+		}
+		else {
+			ConexionBD.desconectar();
+			throw new SQLException("No se ha podido insertar");
+		}
+		ConexionBD.desconectar();
+		
+	}
+
+	public ArrayList<Pokemon> getEquipoPokemon() {
+		return equipoPokemon;
+	}
+
+	public void setEquipoPokemon(ArrayList<Pokemon> equipoPokemon) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Entrenador set equipoPokemon="+equipoPokemon+" where equipoPokemon="+this.equipoPokemon+"")>0) {
+			this.equipoPokemon=equipoPokemon;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar los equipoPokemon o ya estaba asiganado ");
+		}
+	}
+
+	public ArrayList<Objeto> getInventario() {
+		return inventario;
+	}
+
+	public void setInventario(ArrayList<Objeto> inventario) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Entrenador set inventario="+inventario+" where inventario="+this.inventario+"")>0) {
+			this.equipoPokemon=equipoPokemon;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar los inventarios o ya estaba asiganado ");
+		}
+	}
+
+	public short getMonedero() {
+		return monedero;
+	}
+
+	public void setMonedero(short monedero) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Entrenador set monedero="+monedero+" where monedero="+this.monedero+"")>0) {
+			this.monedero=monedero;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar el monedero o ya estaba asiganado ");
+		}
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Entrenador set nombre="+nombre+" where nombre="+this.nombre+"")>0) {
+			this.nombre=nombre;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar el nombre o ya estaba asiganado ");
+		}
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Entrenador set id="+id+" where id="+this.id+"")>0) {
+			this.id=id;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar el id o ya estaba asiganado ");
+		}
+	}
+
+	public String getAspecto() {
+		return aspecto;
+	}
+
+	public void setAspecto(String aspecto) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Entrenador set aspecto="+aspecto+" where aspecto="+this.aspecto+"")>0) {
+			this.aspecto=aspecto;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar el aspecto o ya estaba asiganado ");
+		}
+	}
+	
+	
+}

@@ -1,0 +1,45 @@
+package clases;
+
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import conexionBD.ConexionBD;
+import enums.Genero;
+
+public class Jugador extends Entrenador{
+	private Genero genero;
+	 private String sprite;
+	 
+ public Jugador(int id,String nombre, short monedero,  String aspecto, ArrayList<Pokemon> equipoPokemon, ArrayList<Objeto> inventario ,Genero genero, String sprite) throws SQLException {
+		super(id, nombre, monedero,  aspecto, equipoPokemon, inventario);
+		Statement query=ConexionBD.conectar();
+		if (query.executeUpdate("insert into Jugador values(" + id + "','" + nombre + "','" + monedero + "','" +aspecto + "','" +equipoPokemon+ "','" +inventario+ "','" +genero+ "','" +sprite  +")") > 0) {
+
+		}
+		else {
+			ConexionBD.desconectar();
+			throw new SQLException("No se ha podido insertar");
+		}
+		ConexionBD.desconectar();
+	}
+
+public Genero getGenero() {
+	return genero;
+}
+
+public void setGenero(Genero genero) {
+	this.genero = genero;
+}
+
+public String getSprite() {
+	return sprite;
+}
+
+public void setSprite(String sprite) {
+	this.sprite = sprite;
+}
+
+
+ 
+}

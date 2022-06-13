@@ -1,0 +1,8 @@
+package excepciones;
+
+public class casillaDesmarcada extends Exception{
+
+	public casillaDesmarcada(String msg){
+		super(msg);
+	}
+}

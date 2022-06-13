@@ -1,0 +1,44 @@
+package interfacesGraficas;
+
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JButton;
+import javax.swing.border.BevelBorder;
+
+public class BotonSecundario extends JButton{
+	
+
+	public BotonSecundario(String msg) {
+		super(msg);
+		estilosPorDefecto();
+		
+		 this.addMouseListener(new MouseAdapter() {
+
+	            public void mouseEntered(MouseEvent e) {
+	                estilosAlternativos();
+	            }
+
+	            public void mouseExited(MouseEvent e) {
+	                estilosPorDefecto();
+
+	            }
+	        });
+	}
+		
+
+			private void estilosPorDefecto() {
+			
+				
+			}
+			
+			private void estilosAlternativos() {
+				
+
+				
+			}
+
+}

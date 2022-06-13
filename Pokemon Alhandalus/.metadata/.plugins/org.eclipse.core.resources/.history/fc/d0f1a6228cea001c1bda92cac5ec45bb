@@ -1,0 +1,117 @@
+package clases;
+
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import conexionBD.ConexionBD;
+import enums.TipoPokemon;
+
+public class Habilidad extends ElementoConNombre {
+	private String tipoHabilidad;
+	private String nombre;
+	private byte ptsAtaque;
+	private int id;	
+	private int usos;
+	
+	public Habilidad(String nombre, String tipoHabilidad, byte ptsAtaque, int usos) throws SQLException {
+		super();
+		Statement query=ConexionBD.conectar();
+
+			if (query.executeUpdate("insert into Habilidad(nombre, ptsAtaque, tipoHabilidad, usos) values('" + nombre + "'," +ptsAtaque  + ",'" + tipoHabilidad + "'," + usos +")") > 0) {
+				this.nombre=nombre;
+				this.ptsAtaque=ptsAtaque;
+				this.tipoHabilidad=tipoHabilidad;
+				this.usos=usos;
+			
+			}
+			else {
+				ConexionBD.desconectar();
+				throw new SQLException("No se ha podido insertar");
+			}
+			ConexionBD.desconectar();
+		
+		
+	};
+	
+	
+
+	public int getUsos() {
+		return usos;
+	}
+
+
+	public void setUsos(int usos) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Habilidad set usos="+usos+" where usos="+this.usos+"")>0) {
+			this.usos=usos;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar los usos o ya estaba asiganado ");
+		}
+	}
+
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Habilidad set nombre="+nombre+" where nombre="+this.nombre+"")>0) {
+			this.nombre=nombre;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar los nombres o ya estaba asiganado ");
+		}
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Habilidad set id="+id+" where id="+this.id+"")>0) {
+			this.id=id;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar los ptsAtaque o ya estaba asiganado ");
+		}
+	}
+
+
+	public byte getPtsAtaque() {
+		return ptsAtaque;
+	}
+	public void setPtsAtaque(byte ptsAtaque) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Habilidad set ptsAtaque="+ptsAtaque+" where ptsAtaque="+this.ptsAtaque+"")>0) {
+			this.ptsAtaque=ptsAtaque;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar los ptsAtaque o ya estaba asiganado ");
+		}
+	}
+	public String getTipoHabilidad() {
+		return tipoHabilidad;
+	}
+	public void setTipoHabilidad(String tipoHabilidad) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Habilidad set tipoHabilidad="+tipoHabilidad+" where tipoHabilidad="+this.tipoHabilidad+"")>0) {
+			this.tipoHabilidad=tipoHabilidad;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar el tipoHabilidad o ya estaba asiganado ");
+		}
+		
+	}
+	
+}

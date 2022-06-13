@@ -1,0 +1,67 @@
+package interfacesGraficas;
+
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JButton;
+import javax.swing.border.BevelBorder;
+
+public class BotonSecundario extends JButton{
+	
+
+	public BotonSecundario(String msg) {
+		super(msg);
+		estilosPorDefecto();
+		
+		 this.addMouseListener(new MouseAdapter() {
+
+	            public void mouseEntered(MouseEvent e) {
+	                estilosAlternativos();
+	            }
+
+	            public void mouseExited(MouseEvent e) {
+	                estilosPorDefecto();
+
+	            }
+	        });
+	}
+		
+
+			private void estilosPorDefecto() {
+				this.setFocusable(false);
+				this.setVerticalAlignment(SwingConstants.TOP);
+				this.setHorizontalAlignment(SwingConstants.LEFT);
+				this.setForeground(new Color(128, 0, 0));
+				this.setFont(new Font("Tahoma", Font.ITALIC, 15));
+				this.setBackground(new Color(127, 255, 212));
+				GridBagConstraints gbc_siguiente = new GridBagConstraints();
+				gbc_siguiente.insets = new Insets(0, 0, 5, 5);
+				gbc_siguiente.gridx = 2;
+				gbc_siguiente.gridy = 12;
+				add(this, gbc_siguiente);
+			}
+			
+			private void estilosAlternativos() {
+				this.setFocusable(false);
+				this.setVerticalAlignment(SwingConstants.TOP);
+				this.setHorizontalAlignment(SwingConstants.LEFT);
+				this.setForeground(new Color(128, 0, 0));
+				this.setFont(new Font("Tahoma", Font.ITALIC, 15));
+				this.setBackground(new Color(212, 255, 127));
+				GridBagConstraints gbc_siguiente = new GridBagConstraints();
+				gbc_siguiente.insets = new Insets(0, 0, 5, 5);
+				gbc_siguiente.gridx = 2;
+				gbc_siguiente.gridy = 12;
+				add(this, gbc_siguiente);
+
+				
+			}
+
+}

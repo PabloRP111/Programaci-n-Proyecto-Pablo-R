@@ -1,0 +1,7 @@
+package conexionBD;
+
+import interfaz.DAO;
+
+public interface ObjetoI extends DAO{
+
+}

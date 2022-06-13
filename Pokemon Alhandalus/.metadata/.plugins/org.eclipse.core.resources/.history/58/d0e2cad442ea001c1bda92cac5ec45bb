@@ -1,0 +1,211 @@
+package interfacesGraficas;
+
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.io.File;
+import java.sql.SQLException;
+
+import javax.swing.JTextField;
+
+import musica.MusicaFondo;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import enums.Genero;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.CardLayout;
+import net.miginfocom.swing.MigLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.SwingConstants;
+
+import clases.Entrenador;
+import clases.Jugador;
+
+import java.awt.Font;
+import javax.swing.JSeparator;
+import javax.swing.ImageIcon;
+import javax.swing.JTextPane;
+import javax.swing.JCheckBox;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class PantallaPersonaje extends JPanel{
+private Ventana ventana;
+private JTextField dimeNombre;
+private JLabel lblNewLabel;
+private JTextPane txtpnHolaSoyEl;
+private JLabel textoDimeNombre;
+private JLabel textoDimeGenero;
+private JCheckBox noAbogado;
+private JButton volver;
+private JButton siguiente;
+
+	
+	public PantallaPersonaje(Ventana v){
+		ventana=v;
+		
+		setBackground(Color.BLUE);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(PantallaPersonaje.class.getResource("/imgs/hola.gif")));
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.gridheight = 2;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 1;
+		gbc_lblNewLabel.gridy = 1;
+		add(lblNewLabel, gbc_lblNewLabel);
+		
+		txtpnHolaSoyEl = new JTextPane();
+		txtpnHolaSoyEl.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		txtpnHolaSoyEl.setForeground(new Color(255, 255, 255));
+		txtpnHolaSoyEl.setBackground(new Color(0, 0, 255));
+		txtpnHolaSoyEl.setText("Hola soy el profesor aok, de apellido fairyUse. \r\nAntes de comenzar nuestra aventura necesito que me respondas a un par de datos:\r\nDime, \u00BFCu\u00E1l es tu nombre?\r\n\u00BFY cu\u00E1l tu g\u00E9nero?\r\n\u00BFY el n\u00FAmero de tel\u00E9fono de tu madre?");
+		GridBagConstraints gbc_txtpnHolaSoyEl = new GridBagConstraints();
+		gbc_txtpnHolaSoyEl.insets = new Insets(0, 0, 5, 5);
+		gbc_txtpnHolaSoyEl.fill = GridBagConstraints.BOTH;
+		gbc_txtpnHolaSoyEl.gridx = 2;
+		gbc_txtpnHolaSoyEl.gridy = 2;
+		add(txtpnHolaSoyEl, gbc_txtpnHolaSoyEl);
+		
+		textoDimeNombre = new JLabel("Dime tu Nombre");
+		textoDimeNombre.setVerticalAlignment(SwingConstants.BOTTOM);
+		textoDimeNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		textoDimeNombre.setFont(new Font("Sylfaen", Font.BOLD, 17));
+		textoDimeNombre.setBackground(new Color(0, 255, 255));
+		textoDimeNombre.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_textoDimeNombre = new GridBagConstraints();
+		gbc_textoDimeNombre.gridwidth = 2;
+		gbc_textoDimeNombre.insets = new Insets(0, 0, 5, 5);
+		gbc_textoDimeNombre.gridx = 1;
+		gbc_textoDimeNombre.gridy = 4;
+		add(textoDimeNombre, gbc_textoDimeNombre);
+		
+		dimeNombre = new JTextField();
+		dimeNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_dimeNombre = new GridBagConstraints();
+		gbc_dimeNombre.gridwidth = 2;
+		gbc_dimeNombre.insets = new Insets(0, 0, 5, 5);
+		gbc_dimeNombre.fill = GridBagConstraints.HORIZONTAL;
+		gbc_dimeNombre.gridx = 1;
+		gbc_dimeNombre.gridy = 5;
+		add(dimeNombre, gbc_dimeNombre);
+		dimeNombre.setColumns(10);
+		
+		textoDimeGenero = new JLabel("Dime tu g\u00E9nero");
+		textoDimeGenero.setBackground(new Color(0, 255, 255));
+		textoDimeGenero.setForeground(new Color(255, 255, 255));
+		textoDimeGenero.setFont(new Font("Sylfaen", Font.BOLD, 17));
+		GridBagConstraints gbc_textoDimeGenero = new GridBagConstraints();
+		gbc_textoDimeGenero.gridwidth = 2;
+		gbc_textoDimeGenero.insets = new Insets(0, 0, 5, 5);
+		gbc_textoDimeGenero.gridx = 1;
+		gbc_textoDimeGenero.gridy = 7;
+		add(textoDimeGenero, gbc_textoDimeGenero);
+		
+		final JComboBox dimeGenero = new JComboBox();
+		dimeGenero.setForeground(new Color(128, 0, 0));
+		dimeGenero.setFont(new Font("Sylfaen", Font.BOLD, 16));
+		dimeGenero.setBackground(new Color(0, 255, 255));
+		dimeGenero.setModel(new DefaultComboBoxModel(Genero.values()));
+		GridBagConstraints gbc_dimeGenero = new GridBagConstraints();
+		gbc_dimeGenero.gridwidth = 2;
+		gbc_dimeGenero.insets = new Insets(0, 0, 5, 5);
+		gbc_dimeGenero.fill = GridBagConstraints.HORIZONTAL;
+		gbc_dimeGenero.gridx = 1;
+		gbc_dimeGenero.gridy = 8;
+		add(dimeGenero, gbc_dimeGenero);
+		
+		noAbogado = new JCheckBox("No soy abogado de Nintendo");
+		noAbogado.setHorizontalAlignment(SwingConstants.TRAILING);
+		noAbogado.setVerticalAlignment(SwingConstants.BOTTOM);
+		noAbogado.setBackground(new Color(0, 255, 255));
+		noAbogado.setForeground(new Color(139, 0, 0));
+		noAbogado.setFont(new Font("Sylfaen", Font.BOLD, 14));
+		GridBagConstraints gbc_noAbogado = new GridBagConstraints();
+		gbc_noAbogado.insets = new Insets(0, 0, 5, 5);
+		gbc_noAbogado.gridx = 1;
+		gbc_noAbogado.gridy = 10;
+		add(noAbogado, gbc_noAbogado);
+		
+		volver = new JButton("Volver");
+		volver.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPantalla("PantallaInicio");
+			}
+		});
+		volver.setFocusable(false);
+		volver.setBackground(new Color(127, 255, 212));
+		volver.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		volver.setForeground(new Color(128, 0, 0));
+		volver.setVerticalAlignment(SwingConstants.TOP);
+		volver.setHorizontalAlignment(SwingConstants.RIGHT);
+		GridBagConstraints gbc_volver = new GridBagConstraints();
+		gbc_volver.insets = new Insets(0, 0, 5, 5);
+		gbc_volver.gridx = 1;
+		gbc_volver.gridy = 12;
+		add(volver, gbc_volver);
+		
+		siguiente = new JButton("Siguiente");
+		siguiente.setFocusable(false);
+		siguiente.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String nombre=dimeNombre.getText();
+				String genero=dimeGenero.getSelectedItem().toString();
+				int monedero =0;
+				String aspecto;
+				
+				if(genero=="Hombre") {
+					aspecto="./imagenes/entrenador.png";
+				}
+				if(genero=="Mujer"){
+					aspecto="./imagenes/entrenadora.png";
+				}
+				else { aspecto="(./imagenes/entrenadore.png";}
+				          
+				System.out.println(nombre+"\n"+genero+"\n"+aspecto+"\n"+monedero);
+
+				
+				/*
+				try {
+					new Entrenador(nombre, monedero, aspecto);
+				} catch (SQLException e1) {
+					
+					e1.printStackTrace();
+				}
+				*/
+				
+				ventana.cambiarPantalla("PantallaIniciales");
+			}
+		});
+		siguiente.setVerticalAlignment(SwingConstants.TOP);
+		siguiente.setHorizontalAlignment(SwingConstants.LEFT);
+		siguiente.setForeground(new Color(128, 0, 0));
+		siguiente.setFont(new Font("Tahoma", Font.ITALIC, 15));
+		siguiente.setBackground(new Color(127, 255, 212));
+		GridBagConstraints gbc_siguiente = new GridBagConstraints();
+		gbc_siguiente.insets = new Insets(0, 0, 5, 5);
+		gbc_siguiente.gridx = 2;
+		gbc_siguiente.gridy = 12;
+		add(siguiente, gbc_siguiente);
+		
+	
+	}
+	
+	
+	
+	
+}

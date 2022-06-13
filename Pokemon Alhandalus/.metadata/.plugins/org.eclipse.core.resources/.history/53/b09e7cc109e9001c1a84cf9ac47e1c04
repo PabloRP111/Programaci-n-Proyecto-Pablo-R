@@ -1,0 +1,15 @@
+package clases;
+
+public class Objeto extends ElementoConNombre{
+ 
+	private int id;
+	private String nombre;
+	private String tipoObjeto;
+	
+	public Objeto(int id, String nombre, String tipoObjeto) {
+		super();
+		
+		
+	}
+	
+}

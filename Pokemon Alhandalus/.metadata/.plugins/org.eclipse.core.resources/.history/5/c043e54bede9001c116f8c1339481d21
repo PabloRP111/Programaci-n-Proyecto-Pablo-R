@@ -1,0 +1,111 @@
+package interfacesGraficas;
+
+import javax.swing.JPanel;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import javax.swing.BoxLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import net.miginfocom.swing.MigLayout;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.ImageIcon;
+import javax.swing.JTextPane;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
+
+public class PantallaIniciales extends JPanel {
+
+	private Ventana ventana;
+	
+	public PantallaIniciales(Ventana v) {
+		setBackground(new Color(0, 0, 128));
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
+		
+		JLabel oakIniciales = new JLabel("");
+		oakIniciales.setIcon(new ImageIcon(PantallaIniciales.class.getResource("/imgs/iniciales.gif")));
+		GridBagConstraints gbc_oakIniciales = new GridBagConstraints();
+		gbc_oakIniciales.gridwidth = 3;
+		gbc_oakIniciales.insets = new Insets(0, 0, 5, 5);
+		gbc_oakIniciales.gridx = 2;
+		gbc_oakIniciales.gridy = 1;
+		add(oakIniciales, gbc_oakIniciales);
+		
+		JTextPane txtpnBuenoCaraAlmendra = new JTextPane();
+		txtpnBuenoCaraAlmendra.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		txtpnBuenoCaraAlmendra.setBackground(new Color(0, 0, 128));
+		txtpnBuenoCaraAlmendra.setForeground(new Color(255, 255, 255));
+		txtpnBuenoCaraAlmendra.setText("Bueno cara almendra, ahora te toca elegir un pok\u00E9mon.\r\nTe conseguido una selecci\u00F3n de pok\u00E9mons incre\u00EDbles en base a unas encuentas de popularidad.\r\nElige sabiamente.");
+		GridBagConstraints gbc_txtpnBuenoCaraAlmendra = new GridBagConstraints();
+		gbc_txtpnBuenoCaraAlmendra.gridwidth = 3;
+		gbc_txtpnBuenoCaraAlmendra.insets = new Insets(0, 0, 5, 5);
+		gbc_txtpnBuenoCaraAlmendra.fill = GridBagConstraints.BOTH;
+		gbc_txtpnBuenoCaraAlmendra.gridx = 2;
+		gbc_txtpnBuenoCaraAlmendra.gridy = 2;
+		add(txtpnBuenoCaraAlmendra, gbc_txtpnBuenoCaraAlmendra);
+		
+		JLabel metapod = new JLabel("");
+		metapod.setIcon(new ImageIcon(PantallaIniciales.class.getResource("/imgs/metapod.gif")));
+		GridBagConstraints gbc_metapod = new GridBagConstraints();
+		gbc_metapod.gridheight = 2;
+		gbc_metapod.insets = new Insets(0, 0, 5, 5);
+		gbc_metapod.gridx = 1;
+		gbc_metapod.gridy = 4;
+		add(metapod, gbc_metapod);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(PantallaIniciales.class.getResource("/imgs/magicarp.gif")));
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.gridheight = 2;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 3;
+		gbc_lblNewLabel.gridy = 4;
+		add(lblNewLabel, gbc_lblNewLabel);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(PantallaIniciales.class.getResource("/imgs/bulbasur.gif")));
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_2.gridx = 5;
+		gbc_lblNewLabel_2.gridy = 5;
+		add(lblNewLabel_2, gbc_lblNewLabel_2);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Metapod");
+		chckbxNewCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
+		chckbxNewCheckBox.setVerticalAlignment(SwingConstants.TOP);
+		GridBagConstraints gbc_chckbxNewCheckBox = new GridBagConstraints();
+		gbc_chckbxNewCheckBox.insets = new Insets(0, 0, 0, 5);
+		gbc_chckbxNewCheckBox.gridx = 1;
+		gbc_chckbxNewCheckBox.gridy = 6;
+		add(chckbxNewCheckBox, gbc_chckbxNewCheckBox);
+		
+		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Magikcarp");
+		chckbxNewCheckBox_1.setHorizontalAlignment(SwingConstants.CENTER);
+		chckbxNewCheckBox_1.setVerticalAlignment(SwingConstants.TOP);
+		GridBagConstraints gbc_chckbxNewCheckBox_1 = new GridBagConstraints();
+		gbc_chckbxNewCheckBox_1.insets = new Insets(0, 0, 0, 5);
+		gbc_chckbxNewCheckBox_1.gridx = 3;
+		gbc_chckbxNewCheckBox_1.gridy = 6;
+		add(chckbxNewCheckBox_1, gbc_chckbxNewCheckBox_1);
+		
+		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Bulbasur");
+		GridBagConstraints gbc_chckbxNewCheckBox_2 = new GridBagConstraints();
+		gbc_chckbxNewCheckBox_2.insets = new Insets(0, 0, 0, 5);
+		gbc_chckbxNewCheckBox_2.gridx = 5;
+		gbc_chckbxNewCheckBox_2.gridy = 6;
+		add(chckbxNewCheckBox_2, gbc_chckbxNewCheckBox_2);
+		ventana=v;
+		
+	}
+	
+}

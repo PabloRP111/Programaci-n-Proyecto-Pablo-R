@@ -1,0 +1,60 @@
+package clases;
+
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import conexionBD.ConexionBD;
+import enums.Genero;
+
+public class Jugador extends Entrenador{
+	private Genero genero;
+	 private String sprite;
+	 
+ public Jugador(int id,String nombre, short monedero,  String aspecto, ArrayList<Pokemon> equipoPokemon, ArrayList<Objeto> inventario ,Genero genero, String sprite) throws SQLException {
+		super(id, nombre, monedero,  aspecto, equipoPokemon, inventario);
+		Statement query=ConexionBD.conectar();
+		if (query.executeUpdate("insert into Jugador values(" + id + "','" + nombre + "','" + monedero + "','" +aspecto + "','" +genero+ "','" +sprite  +")") > 0) {
+			this.genero=genero;
+			this.sprite=sprite;
+		}
+		else {
+			ConexionBD.desconectar();
+			throw new SQLException("No se ha podido insertar");
+		}
+		ConexionBD.desconectar();
+	}
+
+public Genero getGenero() {
+	return genero;
+}
+
+public void setGenero(Genero genero) throws SQLException {
+	Statement smt=ConexionBD.conectar();
+	if(smt.executeUpdate("Update Jugador set genero="+genero+" where genero="+this.genero+"")>0) {
+		this.genero=genero;
+		ConexionBD.desconectar();
+	}else {
+		ConexionBD.desconectar();
+		throw new SQLException(" No se pudo cambiar el genero o ya estaba asiganado ");
+	}
+}
+
+public String getSprite() {
+	return sprite;
+}
+
+public void setSprite(String sprite) throws SQLException {
+	Statement smt=ConexionBD.conectar();
+	if(smt.executeUpdate("Update Jugador set aspecto="+sprite+" where aspecto="+this.sprite+"")>0) {
+		this.sprite=sprite;
+		ConexionBD.desconectar();
+	}else {
+		ConexionBD.desconectar();
+		throw new SQLException(" No se pudo cambiar el monedero o ya estaba asiganado ");
+	}
+}
+
+
+ 
+}

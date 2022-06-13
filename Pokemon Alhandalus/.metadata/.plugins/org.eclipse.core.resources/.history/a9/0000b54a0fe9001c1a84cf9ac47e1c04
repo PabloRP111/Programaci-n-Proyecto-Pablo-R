@@ -1,0 +1,18 @@
+package clases;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import enums.Genero;
+
+public class Jugador extends Entrenador{
+	private Genero genero;
+	 private String sprite;
+ public Jugador(int id, String nombre, short monedero, ArrayList<Objeto> inventario,
+			ArrayList<Pokemon> equipoPokemon, String aspecto) throws SQLException {
+		super(id, nombre, monedero, inventario, equipoPokemon, aspecto);
+		
+	}
+
+
+}

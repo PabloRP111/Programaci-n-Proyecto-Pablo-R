@@ -1,0 +1,7 @@
+package interfacesGraficas;
+
+import javax.swing.JButton;
+
+public class BotonSecundario extends JButton{
+
+}

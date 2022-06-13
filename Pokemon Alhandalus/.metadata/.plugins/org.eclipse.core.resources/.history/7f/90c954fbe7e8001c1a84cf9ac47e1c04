@@ -1,0 +1,40 @@
+package clases;
+
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import conexionBD.ConexionBD;
+import enums.TipoPokemon;
+
+public class Habilidad extends ElementoConNombre {
+
+	private byte ptsAtaque;
+	public byte getPtsAtaque() {
+		return ptsAtaque;
+	}
+	public void setPtsAtaque(byte ptsAtaque) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Habilidad set ptsAtaque="+ptsAtaque+" where ptsAtaque="+this.ptsAtaque+"")>0) {
+			this.ptsAtaque=ptsAtaque;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar los ptsAtaque o ya estaba asiganado ");
+		}
+	}
+	public TipoPokemon getTipoHabilidad() {
+		return tipoHabilidad;
+	}
+	public void setTipoHabilidad(TipoPokemon tipoHabilidad) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Habilidad set tipoHabilidad="+tipoHabilidad+" where tipoHabilidad="+this.tipoHabilidad+"")>0) {
+			this.tipoHabilidad=tipoHabilidad;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar el tipoHabilidad o ya estaba asiganado ");
+		}
+		
+	}
+	private TipoPokemon tipoHabilidad;
+}

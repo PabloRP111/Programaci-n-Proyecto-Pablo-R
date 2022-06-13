@@ -1,0 +1,44 @@
+package clases;
+
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import conexionBD.ConexionBD;
+import enums.Genero;
+
+public class Jugador extends Entrenador{
+	private Genero genero;
+	 
+ public Jugador(int id,String nombre, short monedero,  String aspecto, ArrayList<Pokemon> equipoPokemon, ArrayList<Objeto> inventario ,Genero genero) throws SQLException {
+		super(id, nombre, monedero,  aspecto, equipoPokemon, inventario);
+		Statement query=ConexionBD.conectar();
+		if (query.executeUpdate("insert into Jugador values(" + id + "','" + nombre + "','" + monedero + "','" +aspecto + "','" +genero  +")") > 0) {
+			this.genero=genero;
+		}
+		else {
+			ConexionBD.desconectar();
+			throw new SQLException("No se ha podido insertar");
+		}
+		ConexionBD.desconectar();
+	}
+
+public Genero getGenero() {
+	return genero;
+}
+
+public void setGenero(Genero genero) throws SQLException {
+	Statement smt=ConexionBD.conectar();
+	if(smt.executeUpdate("Update Jugador set genero="+genero+" where genero="+this.genero+"")>0) {
+		this.genero=genero;
+		ConexionBD.desconectar();
+	}else {
+		ConexionBD.desconectar();
+		throw new SQLException(" No se pudo cambiar el genero o ya estaba asiganado ");
+	}
+}
+
+
+
+ 
+}

@@ -1,0 +1,92 @@
+package interfacesGraficas;
+
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JPanel;
+
+import conexionBD.ConexionBD;
+import java.awt.GridBagLayout;
+import javax.swing.JLabel;
+import java.awt.GridBagConstraints;
+import javax.swing.ImageIcon;
+import java.awt.Insets;
+import javax.swing.JTextPane;
+import javax.swing.JButton;
+
+public class PantallaPokemon extends JPanel{
+
+	private Ventana ventana;
+	protected static String razaPokemon;
+
+	
+
+
+	public PantallaPokemon(Ventana v) {
+		
+		
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
+		
+		JTextPane txtpnNombre = new JTextPane();
+		txtpnNombre.setText("- NOMBRE:\r\n- RAZA:\r\n- TIPO:\r\n- NIVEL:\r\n- PUNTOS XP:\r\n");
+		GridBagConstraints gbc_txtpnNombre = new GridBagConstraints();
+		gbc_txtpnNombre.gridwidth = 5;
+		gbc_txtpnNombre.insets = new Insets(0, 0, 5, 5);
+		gbc_txtpnNombre.fill = GridBagConstraints.BOTH;
+		gbc_txtpnNombre.gridx = 1;
+		gbc_txtpnNombre.gridy = 1;
+		add(txtpnNombre, gbc_txtpnNombre);
+		
+		JLabel fotoPokemon = new JLabel("");
+		fotoPokemon.setIcon(new ImageIcon(PantallaPokemon.class.getResource("/imgs/inicial1.png")));
+		GridBagConstraints gbc_fotoPokemon = new GridBagConstraints();
+		gbc_fotoPokemon.insets = new Insets(0, 0, 5, 5);
+		gbc_fotoPokemon.gridx = 8;
+		gbc_fotoPokemon.gridy = 1;
+		add(fotoPokemon, gbc_fotoPokemon);
+		
+		JTextPane txtpnHabilidades = new JTextPane();
+		txtpnHabilidades.setText("- Habilidades:");
+		GridBagConstraints gbc_txtpnHabilidades = new GridBagConstraints();
+		gbc_txtpnHabilidades.insets = new Insets(0, 0, 5, 5);
+		gbc_txtpnHabilidades.fill = GridBagConstraints.BOTH;
+		gbc_txtpnHabilidades.gridx = 8;
+		gbc_txtpnHabilidades.gridy = 2;
+		add(txtpnHabilidades, gbc_txtpnHabilidades);
+		
+		JButton Combatir = new BotonSecundario("COMBATIR");
+		GridBagConstraints gbc_Combatir = new GridBagConstraints();
+		gbc_Combatir.gridx = 9;
+		gbc_Combatir.gridy = 3;
+		add(Combatir, gbc_Combatir);
+		
+		ventana=v;
+		
+	}
+
+
+	public String getRazaPokemon() {
+		return razaPokemon;
+	}
+
+
+	public void setRazaPokemon(String razaPokemon) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Pokemon set razaPokemon="+razaPokemon+" where tipo="+this.razaPokemon+"")>0) {
+			this.razaPokemon=razaPokemon;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar la razaPokemon o ya estaba asiganado ");
+		
+	}
+	
+}
+	
+	
+}

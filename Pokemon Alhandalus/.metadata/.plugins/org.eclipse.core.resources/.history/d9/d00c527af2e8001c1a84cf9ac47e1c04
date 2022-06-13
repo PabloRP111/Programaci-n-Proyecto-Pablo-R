@@ -1,0 +1,10 @@
+package clases;
+
+import enums.Genero;
+
+public class Jugador extends Entrenador{
+	
+ private Genero genero;
+ private String sprite;
+
+}

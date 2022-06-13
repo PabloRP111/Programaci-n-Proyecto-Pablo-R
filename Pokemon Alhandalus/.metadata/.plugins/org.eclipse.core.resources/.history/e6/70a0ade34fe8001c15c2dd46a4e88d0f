@@ -1,0 +1,88 @@
+package clases;
+
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import enums.TipoPokemon;
+import conexionBD.ConexionBD;
+
+public class Pokemon extends ElementoConNombre{
+	
+	private String nombre;
+	private byte nivel;
+	private byte ptsExperiencia;
+	private ArrayList<Habilidad> habilidades = new ArrayList<Habilidad>();
+	private TipoPokemon tipo;
+	private String razaPokemon;
+	
+	public Pokemon(byte nivel,byte puntosDeExperiencia,ArrayList<Habilidad> habilidades
+			,TipoPokemon tipo,String razaPokemon) throws SQLException{
+		super();
+		Statement query=ConexionBD.conectar();
+
+		
+			if (query.executeUpdate("insert into Pokemon values('" + nombre + "','" + nivel + "','" + ptsExperiencia + "',"
+					+ habilidades+ "','"+razaPokemon +")") > 0) {
+				
+			
+			
+			}
+			else {
+				ConexionBD.desconectar();
+				throw new SQLException("No se ha podido cambiar el boolean activo");
+			}
+			ConexionBD.desconectar();
+		
+		
+		
+		}
+
+	
+	
+	
+	public byte getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(byte nivel) {
+		this.nivel = nivel;
+	}
+
+	public byte getPuntosDeExperiencia() {
+		return ptsExperiencia;
+	}
+
+	public void setPuntosDeExperiencia(byte puntosDeExperiencia) {
+		this.ptsExperiencia = puntosDeExperiencia;
+	}
+
+	public ArrayList<Habilidad> getHabilidades() {
+		return habilidades;
+	}
+
+	public void setHabilidades(ArrayList<Habilidad> habilidades) {
+		this.habilidades = habilidades;
+	}
+
+	public TipoPokemon getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoPokemon tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getRazaPokemon() {
+		return razaPokemon;
+	}
+
+	public void setRazaPokemon(String razaPokemon) {
+		this.razaPokemon = razaPokemon;
+	}
+	
+	
+}

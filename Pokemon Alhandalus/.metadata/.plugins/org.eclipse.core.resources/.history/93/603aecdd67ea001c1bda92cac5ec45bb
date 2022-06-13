@@ -1,0 +1,19 @@
+package interfacesGraficas;
+
+import javax.swing.JPanel;
+
+public class PantallaPokemon extends JPanel{
+
+	private Ventana ventana;
+	private String razaPokemon;
+
+	
+	public PantallaPokemon(Ventana v) {
+		ventana=v;
+		
+		
+		
+	}
+
+	
+}

@@ -1,0 +1,45 @@
+package interfacesGraficas;
+
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JPanel;
+
+import conexionBD.ConexionBD;
+
+public class PantallaPokemon extends JPanel{
+
+	private Ventana ventana;
+	protected static String razaPokemon;
+
+	
+
+
+	public PantallaPokemon(Ventana v) {
+		ventana=v;
+		
+		
+		
+	}
+
+
+	public String getRazaPokemon() {
+		return razaPokemon;
+	}
+
+
+	public void setRazaPokemon(String razaPokemon) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update Pokemon set razaPokemon="+razaPokemon+" where tipo="+this.razaPokemon+"")>0) {
+			this.razaPokemon=razaPokemon;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar la razaPokemon o ya estaba asiganado ");
+		
+	}
+	
+}
+	
+	
+}

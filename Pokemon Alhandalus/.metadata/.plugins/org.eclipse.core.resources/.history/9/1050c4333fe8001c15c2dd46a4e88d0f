@@ -1,0 +1,15 @@
+package interfaz;
+
+import java.util.ArrayList;
+
+public interface DAO<Clase,clave> {
+
+	void insertar(Clase a);
+	
+	void modificar(Clase a);
+	
+	void eliminar (Clase a);
+	
+	ArrayList<Clase> obtenerTodos();
+	
+}

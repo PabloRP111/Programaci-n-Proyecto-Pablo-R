@@ -1,0 +1,35 @@
+package clases;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import enums.Genero;
+
+public class Jugador extends Entrenador{
+	private Genero genero;
+	 private String sprite;
+	 
+ public Jugador(int id, String nombre, short monedero, String aspecto) throws SQLException {
+		super(id, nombre, monedero,  aspecto);
+		
+	}
+
+public Genero getGenero() {
+	return genero;
+}
+
+public void setGenero(Genero genero) {
+	this.genero = genero;
+}
+
+public String getSprite() {
+	return sprite;
+}
+
+public void setSprite(String sprite) {
+	this.sprite = sprite;
+}
+
+
+ 
+}
